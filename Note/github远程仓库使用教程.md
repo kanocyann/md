@@ -142,7 +142,7 @@ git pull origin dev:master
 git pull origin dev
 ```
 
-# 三.分支管理(不使用pull命令进行简易合并的处理方法)
+# 三.分支管理(不使用pull命令进行简易合并)
 
 ### 1.新建分支(本地创建后上传到远程仓库)
 
