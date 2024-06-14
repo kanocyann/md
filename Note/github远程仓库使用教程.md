@@ -20,15 +20,16 @@ git config --global <user.email>
 ### 3.生成SSH Key密钥
 
 ```bash
-ssh-keygen -t rsa -C <user.name>
+ssh-keygen -t rsa -C <user.email>
 ```
 
 连按三次回车,直到出现SHA-256图像为止
 
-密钥存放在C:\user\user.name\\.ssh文件夹下
+密钥存放在C:\user\user.name\\.ssh(linux在~下的.ssh中)文件夹下
 
 ```bash
 cat C:/Users/user.name/.ssh/id_rsa.pub
+cat ~/.ssh/id_rsa.pub
 ```
 
 #### 注意user.name的替换
@@ -39,7 +40,7 @@ cat C:/Users/user.name/.ssh/id_rsa.pub
 
 github - settings - SSH and GPG keys - New SSH key
 
-title是备注随便起名
+title是备注
 
 key:将复制的密钥填入,然后点击Add SSH key
 
@@ -77,7 +78,7 @@ git push -u <仓库别名> <分支名>		#首次提交需要加上后面的参数
 
 ### 10.注意
 
-SSH Key每台设备有一份就足够了,可以操控多个设备
+SSH Key每台设备有一份就足够了,可以同时操控多个远程仓库
 
 # 二.一些常用命令
 
@@ -91,6 +92,7 @@ git branch -a   #查看所有分支,包括远程分支
 git branch -vv  #查看本地分支和它们各自上游分支间的跟踪关系
 git branch dev	#创建新分支
 git checkout dev	#切换分支
+git switch dev	#切换分支的另一个命令
 git remote remove origin	#删除指定名字的远程仓库
 ```
 
@@ -103,19 +105,8 @@ git branch -M master master1
 
 删除指定的本地分支
 git branch -d master
-
 强制删除指定的本地分支
 git branch -D master
-```
-
-```bash
-github上的版本发布
-
-本地版本号
-git tag -a v1.0.0
-
-把这个版本发布到线上
-git push --tags
 ```
 
 ```bash
@@ -144,16 +135,16 @@ git pull <远程主机名> <远程分支名>:<本地分支名>
 $ git pull
 $ git pull origin
 
-# 将远程主机 origin 的 master 分支拉取过来，与本地的 dev 分支合并。
-git pull origin master:dev
+# 将远程主机 origin 的 dev 分支拉取过来，与本地的 master 分支合并。
+git pull origin dev:master
 
 #如果远程分支是与当前分支合并，则冒号后面的部分可以省略。
-git pull origin master
+git pull origin dev
 ```
 
-# 三.分支管理
+# 三.分支管理(不使用pull命令进行简易合并的处理方法)
 
-### 1.新建分支
+### 1.新建分支(本地创建后上传到远程仓库)
 
 ① 从已有的分支创建新的分支(如从master分支), 创建一个dev分支，并切换到dev分支
 
@@ -173,7 +164,7 @@ git branch
 git push origin dev
 ```
 
-### 2.拉取分支
+### 2.拉取分支(本地创建远程仓库的分支)
 
 ① 把远程分支拉到本地
 
@@ -193,7 +184,7 @@ git checkout -b dev
 git pull origin dev
 ```
 
-### 3.提交分支
+### 3.提交分支(提交到第二分支)
 
 ① 首先切换到dev分支上,进行提交推送
 
